@@ -36,7 +36,7 @@ class HomeView extends React.Component<Props> {
 
     _renderProgressBar = (): JSX.Element => (
         <View style={[commonStyles.padding, commonStyles.space_3em]}>
-            <ProgressBar />
+            <ProgressBar current={this.props.drunkWater} max={2500} />
         </View>
     );
 
