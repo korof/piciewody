@@ -3,6 +3,7 @@ import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface Props {
+    color: string;
     title: string;
     onPress(): void;
 }
@@ -10,7 +11,9 @@ interface Props {
 export const ActivityButton = (props: Props) => {
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
-            <Text style={[styles.title, fontStyles.highlighted]}>{props.title}</Text>
+            <Text style={[styles.title, fontStyles.bold, { color: props.color }]}>
+                {props.title}
+            </Text>
         </TouchableOpacity>
     );
 };
