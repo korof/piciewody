@@ -1,10 +1,22 @@
+import { ActionDispatcher, AppState } from '@store/models';
 import { commonStyles, fontStyles } from '@ui';
 import { ActivityButton } from '@ui/components/ActivityButton';
 import { ProgressBar } from '@ui/components/ProgressBar';
+import { GLOBAL_COLORS } from '@ui/const';
 import * as React from 'react';
 import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
-export default class HomeView extends React.Component {
+import { ClearProgress } from '../actions';
+import { getDrunkWater } from '../selectors';
+
+interface Props {
+    clear: ActionDispatcher<ClearProgress>;
+    drunkWater: number;
+}
+
+class HomeView extends React.Component<Props> {
     drinkOneCup = () => {
         Alert.alert('Drink!');
     };
@@ -19,7 +31,9 @@ export default class HomeView extends React.Component {
 
     _renderUserProgress = (): JSX.Element => (
         <View style={commonStyles.space_2em}>
-            <Text style={[fontStyles.regular, fontStyles.align]}>Your progress:</Text>
+            <Text style={[fontStyles.regular, fontStyles.align]}>
+                Your progress: {this.props.drunkWater} ml
+            </Text>
         </View>
     );
 
@@ -29,9 +43,23 @@ export default class HomeView extends React.Component {
         </View>
     );
 
-    _renderButton = (): JSX.Element => (
+    _renderDrinkButton = (): JSX.Element => (
         <View style={commonStyles.space_2em}>
-            <ActivityButton title={'Drink a cup!'} onPress={this.drinkOneCup} />
+            <ActivityButton
+                color={GLOBAL_COLORS.dodgerBlue}
+                onPress={this.drinkOneCup}
+                title={'Drink a cup!'}
+            />
+        </View>
+    );
+
+    _renderClearButton = (): JSX.Element => (
+        <View style={styles.clearButtonContainer}>
+            <ActivityButton
+                color={GLOBAL_COLORS.violetRed}
+                onPress={this.props.clear}
+                title={'Clear progress'}
+            />
         </View>
     );
 
@@ -41,13 +69,19 @@ export default class HomeView extends React.Component {
                 {this._renderHeader()}
                 {this._renderUserProgress()}
                 {this._renderProgressBar()}
-                {this._renderButton()}
+                {this._renderDrinkButton()}
+                {this._renderClearButton()}
             </SafeAreaView>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    clearButtonContainer: {
+        alignSelf: 'center',
+        bottom: 100,
+        position: 'absolute',
+    },
     headerText: {
         alignItems: 'center',
         fontSize: 24,
@@ -60,3 +94,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+const mapStateToProps = (state: AppState) => ({
+    drunkWater: getDrunkWater(state),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    clear: () => dispatch(new ClearProgress()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(HomeView);
