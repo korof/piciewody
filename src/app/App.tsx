@@ -1,23 +1,47 @@
 import { commonStyles, fontStyles } from '@ui';
+import { ActivityButton } from '@ui/components/ActivityButton';
+import { ProgressBar } from '@ui/components/ProgressBar';
 import * as React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
+    drinkOneCup = () => {
+        Alert.alert('Drink!');
+    };
+
     _renderHeader = (): JSX.Element => (
-        <Text style={styles.headerText}>
+        <Text style={[styles.headerText, commonStyles.space_2em]}>
             Each of us needs
-            <Text style={[fontStyles.bold, fontStyles.highlighted]}> 2.5 liters</Text> of water a
-            day!
+            <Text style={fontStyles.highlighted}> 2.5 liters </Text>
+            of water a day!
         </Text>
     );
 
-    _renderProgress = (): JSX.Element => <Text>asd</Text>;
+    _renderUserProgress = (): JSX.Element => (
+        <View style={commonStyles.space_2em}>
+            <Text style={[fontStyles.regular, fontStyles.align]}>Your progress:</Text>
+        </View>
+    );
+
+    _renderProgressBar = (): JSX.Element => (
+        <View style={[commonStyles.padding, commonStyles.space_3em]}>
+            <ProgressBar />
+        </View>
+    );
+
+    _renderButton = (): JSX.Element => (
+        <View style={commonStyles.space_2em}>
+            <ActivityButton title={'Drink a cup!'} onPress={this.drinkOneCup} />
+        </View>
+    );
 
     render(): JSX.Element {
         return (
             <SafeAreaView style={[styles.mainContainer, commonStyles.padding]}>
                 {this._renderHeader()}
-                {this._renderProgress()}
+                {this._renderUserProgress()}
+                {this._renderProgressBar()}
+                {this._renderButton()}
             </SafeAreaView>
         );
     }
@@ -28,12 +52,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontSize: 24,
         fontWeight: '300',
-        height: 100,
         justifyContent: 'center',
         textAlign: 'center',
     },
     mainContainer: {
-        alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
     },
