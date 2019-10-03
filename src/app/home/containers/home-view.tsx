@@ -4,7 +4,7 @@ import { ProgressBar } from '@ui/components/ProgressBar';
 import * as React from 'react';
 import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
+export default class HomeView extends React.Component {
     drinkOneCup = () => {
         Alert.alert('Drink!');
     };
