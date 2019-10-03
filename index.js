@@ -4,7 +4,6 @@ import firebase from 'react-native-firebase';
 
 import { name as appName } from './app.json';
 import App from './src/app/App';
-import { Navigation } from './src/app/shared/navigation';
 
 class Piciewody extends React.Component {
     componentDidMount() {
