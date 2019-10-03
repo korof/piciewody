@@ -6,7 +6,7 @@ import { HomeState } from './reducer';
 
 export const getHomeState = (state: AppState): HomeState => state.home;
 
-export const getFirstOne = createSelector(
+export const getDrunkWater = createSelector(
     getHomeState,
-    prop('firstOne'),
+    prop('drunkWater'),
 );
