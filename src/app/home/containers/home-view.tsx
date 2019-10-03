@@ -29,7 +29,7 @@ class HomeView extends React.Component<Props> {
     _renderUserProgress = (): JSX.Element => (
         <View style={commonStyles.space_3em}>
             <Text style={[fontStyles.regular, fontStyles.align]}>
-                Your progress today: {this.props.drunkWater} ml
+                Your progress today: {this.props.drunkWater} / 2500 ml
             </Text>
         </View>
     );
