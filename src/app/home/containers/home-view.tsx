@@ -4,23 +4,20 @@ import { ActivityButton } from '@ui/components/ActivityButton';
 import { ProgressBar } from '@ui/components/ProgressBar';
 import { GLOBAL_COLORS } from '@ui/const';
 import * as React from 'react';
-import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { ClearProgress } from '../actions';
+import { ClearProgress, DrinkWater } from '../actions';
 import { getDrunkWater } from '../selectors';
 
 interface Props {
     clear: ActionDispatcher<ClearProgress>;
+    drink: ActionDispatcher<DrinkWater>;
     drunkWater: number;
 }
 
 class HomeView extends React.Component<Props> {
-    drinkOneCup = () => {
-        Alert.alert('Drink!');
-    };
-
     _renderHeader = (): JSX.Element => (
         <Text style={[styles.headerText, commonStyles.space_2em]}>
             Each of us needs
@@ -30,9 +27,9 @@ class HomeView extends React.Component<Props> {
     );
 
     _renderUserProgress = (): JSX.Element => (
-        <View style={commonStyles.space_2em}>
+        <View style={commonStyles.space_3em}>
             <Text style={[fontStyles.regular, fontStyles.align]}>
-                Your progress: {this.props.drunkWater} ml
+                Your progress today: {this.props.drunkWater} ml
             </Text>
         </View>
     );
@@ -47,7 +44,7 @@ class HomeView extends React.Component<Props> {
         <View style={commonStyles.space_2em}>
             <ActivityButton
                 color={GLOBAL_COLORS.dodgerBlue}
-                onPress={this.drinkOneCup}
+                onPress={this.props.drink}
                 title={'Drink a cup!'}
             />
         </View>
@@ -101,6 +98,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     clear: () => dispatch(new ClearProgress()),
+    drink: () => dispatch(new DrinkWater()),
 });
 
 export default connect(

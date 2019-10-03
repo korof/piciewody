@@ -8,9 +8,8 @@ export enum HomeActionTypes {
 export class ClearProgress implements Action<string> {
     readonly type = HomeActionTypes.CLEAR_PROGRESS;
 }
-export class DrinkWater implements Action<number> {
+export class DrinkWater implements Action<string> {
     readonly type = HomeActionTypes.DRINK_WATER;
-    constructor(public payload: number) {}
 }
 
 export type HomeAction = ClearProgress | DrinkWater;

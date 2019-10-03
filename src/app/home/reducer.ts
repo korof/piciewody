@@ -16,7 +16,7 @@ export function reducer(state: HomeState = initialState, action: HomeAction): Ho
             return initialState;
 
         case HomeActionTypes.DRINK_WATER:
-            return { ...state, drunkWater: action.payload };
+            return { ...state, drunkWater: state.drunkWater + 250 };
 
         default:
             return state;
