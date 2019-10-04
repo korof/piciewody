@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import firebase from 'react-native-firebase';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -20,7 +21,7 @@ class Piciewody extends React.Component {
         rehydrateStore();
         firebase.auth().signInAnonymously();
         firebase.messaging().getToken().then(res => {
-            console.log(res);
+            AsyncStorage.setItem('token', res);
         })
     }
 
