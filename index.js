@@ -19,6 +19,9 @@ class Piciewody extends React.Component {
     componentDidMount() {
         rehydrateStore();
         firebase.auth().signInAnonymously();
+        firebase.messaging().getToken().then(res => {
+            console.log(res);
+        })
     }
 
     render() {
