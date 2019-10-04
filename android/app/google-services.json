@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659939478304",
+    "firebase_url": "https://piciewody-9e12e.firebaseio.com",
+    "project_id": "piciewody-9e12e",
+    "storage_bucket": "piciewody-9e12e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659939478304:android:8800136b54807d49842545",
+        "android_client_info": {
+          "package_name": "com.piciewody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659939478304-3igchfci6l3ooj1eibtldibu59q437ni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALS8zunc4x3B0-yGeM57y-8iXi4uITdp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659939478304-3igchfci6l3ooj1eibtldibu59q437ni.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "659939478304-s21d9nt8siood64sfojh864k2g3p2cue.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Piciewody"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
